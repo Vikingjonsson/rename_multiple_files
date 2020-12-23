@@ -13,7 +13,7 @@ def get_files_in_folder(path: str = '') -> List[str]:
     return [os.path.join(path, file) for file in FOLDER_CONTENT if os.path.isfile(os.path.join(path, file))]
 
 
-def rename_file(file_path: str = '', pattern: str = '', new_name: str = ''):
+def rename_file(file_path: str = '', pattern: str = '', new_name: str = '') -> None:
     path, file_name = os.path.split(file_path)
 
     if pattern and pattern in file_name:
@@ -22,13 +22,14 @@ def rename_file(file_path: str = '', pattern: str = '', new_name: str = ''):
         os.rename(file_path, NEW_PATH)
 
 
-def rename_multiple_files(path: str = '', pattern: str = '', newName: str = ''):
+def rename_multiple_files(path: str = '', pattern: str = '', newName: str = '') -> None:
     FILES: Final = get_files_in_folder(path)
+
     for file in FILES:
         rename_file(file, pattern, newName)
 
 
-def main(argv: List = []) -> None:
+def main(argv: List[str] = []) -> None:
     path = ''
     pattern = ''
     name = ''
