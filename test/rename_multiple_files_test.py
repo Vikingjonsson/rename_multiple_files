@@ -7,7 +7,7 @@ import os
 PATH = os.path.join(os.getcwd(), 'test')
 
 
-class Test_folder_name_changer(unittest.TestCase):
+class Test_rename_multiple_files(unittest.TestCase):
 
     def setUp(self):
         pass

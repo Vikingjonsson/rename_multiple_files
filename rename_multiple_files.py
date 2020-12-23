@@ -15,24 +15,29 @@ def get_files_in_folder(path: str = '') -> List[str]:
 
 def rename_file(file_path: str = '', pattern: str = '', new_name: str = '') -> None:
     path, file_name = os.path.split(file_path)
+    is_possible_to_rename = bool(
+        new_name and pattern and
+        new_name is not pattern and
+        pattern in file_name)
 
-    if pattern and pattern in file_name:
+    if is_possible_to_rename:
         NEW_NAME: Final = file_name.replace(pattern, new_name, 1)
         NEW_PATH: Final = os.path.join(path, NEW_NAME)
         os.rename(file_path, NEW_PATH)
 
 
-def rename_multiple_files(path: str = '', pattern: str = '', newName: str = '') -> None:
+def rename_multiple_files(path: str = '', pattern: str = '', new_name: str = '') -> None:
     FILES: Final = get_files_in_folder(path)
 
     for file in FILES:
-        rename_file(file, pattern, newName)
+        rename_file(file, pattern, new_name)
 
 
 def main(argv: List[str] = []) -> None:
     path = ''
     pattern = ''
     name = ''
+    rename_folder = False
 
     try:
         _, path, pattern, name = argv
@@ -41,6 +46,10 @@ def main(argv: List[str] = []) -> None:
         exit
 
     rename_multiple_files(path, pattern, name)
+
+    if rename_folder:
+        folder, _ = os.path.split(path)
+        rename_file(folder, pattern, name)
 
 
 if __name__ == '__main__':
