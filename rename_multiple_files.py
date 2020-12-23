@@ -22,23 +22,25 @@ def rename_file(filePath: str = '', pattern: str = '', newName: str = ''):
         os.rename(filePath, newPath)
 
 
-def rename_multiple_files(path, pattern, newName):
+def rename_multiple_files(path: str = '', pattern: str = '', newName: str = ''):
     files = get_files_in_folder(path)
     for file in files:
         rename_file(file, pattern, newName)
 
 
-if __name__ == '__main__':
+def main(argv: List = []) -> None:
     path = ''
     pattern = ''
     name = ''
 
     try:
-        path = sys.argv[1]
-        pattern = sys.argv[2]
-        name = sys.argv[3]
+        _, path, pattern, name = argv
     except:
-        print('Enter a path to a folder, a pattern and a new file name')
+        print('Enter a path to a folder, a pattern and a new file name.')
         exit
 
     rename_multiple_files(path, pattern, name)
+
+
+if __name__ == '__main__':
+    main(sys.argv)
