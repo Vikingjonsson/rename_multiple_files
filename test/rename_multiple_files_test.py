@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch
-import rename_multiple_files
+import rename_files
 import os
 
 
@@ -21,17 +21,17 @@ class Test_rename_multiple_files(unittest.TestCase):
         Test that it can get contents in folder
         """
         global PATH
-        rename_multiple_files.get_folder_content(PATH)
+        rename_files.get_folder_content(PATH)
         mock_listdir.assert_called_once_with(PATH)
 
     @ patch('os.path.isfile')
     @ patch('os.path.join')
-    def test_get_files_in_folder(self,   mock_path_isfile, mock_path_join):
+    def test_get_files_in_folder(self, mock_path_isfile, mock_path_join):
         """
         Test that it can get all files in folder
         """
         global PATH
-        rename_multiple_files.get_files_in_folder(PATH)
+        rename_files.get_files_in_folder(PATH)
         mock_path_isfile.assert_called()
         mock_path_join.assert_called()
 
@@ -45,7 +45,7 @@ class Test_rename_multiple_files(unittest.TestCase):
         callPath = os.path.join(PATH, 'new_name.txt')
         pattern = 'pattern'
         new_name = 'new_name'
-        rename_multiple_files.rename_file(path, pattern, new_name)
+        rename_files.rename_file(path, pattern, new_name)
         mock_rename.assert_called_once_with(path, callPath)
 
 

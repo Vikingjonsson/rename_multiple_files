@@ -1,3 +1,6 @@
 ### Python ###
 # Byte-compiled
 __pycache__/
+
+# Virtualenv
+venv/
