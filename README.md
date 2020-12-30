@@ -13,7 +13,7 @@ name = the string to replace the old value with
 
 ## Requirements
 
-You need a Python
+Python 3
 
 ## Disclaimer
 
